@@ -1,0 +1,13 @@
+{
+  "name": "earthdawn-dice-roller",
+  "version": "1.0.0",
+  "description": "Bot do rzutów kośćmi w Earthdawn 1ed.",
+  "main": "bot.js",
+  "author": "Adam Howaniec",
+  "dependencies": {
+    "discord.io": "^2.5.3",
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
+    "winston": "^3.2.1"
+  }
+}
