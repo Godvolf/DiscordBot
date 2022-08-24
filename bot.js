@@ -256,7 +256,27 @@ client.on('message', msg => {
             break; 
          }
     // n * d6
-     } else if(message[0] == '!' && message[1] >= '1' && message[1] <= '9' && message[2] === 'd' && message[3] >='1'
+     } else if (message.substring(0, 2) == '!%') {
+            // !% xk6 + yk8
+        let args = message.substring(2).split('+');
+        if (args.length < 2) {
+            msg.reply('Wrong input');
+        } else {
+            let k6s = args[0];
+            let k8s = args[1];
+            let quantity6 = parseInt(k6s.split('k')[0]);
+            let quantity8 = parseInt(k8s.split('k')[0]);
+            let type6 = parseInt(k6s.split('k')[1]);
+            let type8 = parseInt(k8s.split('k')[1]);
+            if (!type8 || !type6 || !quantity6 || !quantity8 || type6 !== 6 || type8 !== 8) {
+                msg.reply('Wrong input, error code', quantity6, type6, quantity8, type8);
+            } else {
+                msg.reply('k6s: ', k6s, ' k8s: ', k8s);
+            }
+        }
+
+    }
+     else if(message[0] == '!' && message[1] >= '1' && message[1] <= '9' && message[2] === 'd' && message[3] >='1'
                     && message[3] <= '9') {
         let diceType;
         if (message[3] == '1' && message[4] && message[4] >= '0' && message[4] <= '9') {
@@ -270,7 +290,7 @@ client.on('message', msg => {
             diceCount.push(diceType);
          }
          combineResults(diceCount, msg, 0, undefined, undefined);
-     }
+        }
 });
 
 
